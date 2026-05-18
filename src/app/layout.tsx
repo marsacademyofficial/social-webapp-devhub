@@ -1,4 +1,3 @@
-import Header from "@/components/Header/Header";
 import ThemeProvider from "@/components/Providers/ThemeProvider";
 import { geistSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
@@ -17,11 +16,10 @@ const RootLayout = ({ children }: RootLayoutProps) => {
       suppressHydrationWarning>
       <body>
         <ThemeProvider
-          attribute={"class"}
-          defaultTheme="dark"
-          enableSystem={false}>
-          <Header />
-
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange>
           <main className="mx-auto max-w-7xl">{children}</main>
         </ThemeProvider>
       </body>
