@@ -64,7 +64,7 @@ const LoginForm = () => {
               type="email"
               aria-invalid={fieldState.invalid}
               placeholder="Email id"
-              className="p-5 focus-visible:border-blue-400 focus-visible:ring-1"
+              className="py-5 focus-visible:border-blue-400 focus-visible:ring-1"
               autoComplete="off"
             />
           </Field>
@@ -83,7 +83,7 @@ const LoginForm = () => {
               id={field.name}
               aria-invalid={fieldState.invalid}
               placeholder="Password"
-              className="p-5 focus-visible:border-blue-400 focus-visible:ring-1"
+              className="py-5 focus-visible:border-blue-400 focus-visible:ring-1"
               autoComplete="off"
             />
           </Field>
