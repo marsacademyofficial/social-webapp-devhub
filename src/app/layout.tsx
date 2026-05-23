@@ -1,6 +1,4 @@
 import ThemeProvider from "@/components/Providers/ThemeProvider";
-import { geistSans } from "@/lib/fonts";
-import { cn } from "@/lib/utils";
 import { ReactNode } from "react";
 import "./globals.css";
 
@@ -12,7 +10,6 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html
       lang="en"
-      className={cn("font-sans", geistSans.variable)}
       suppressHydrationWarning>
       <body>
         <ThemeProvider
@@ -20,7 +17,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange>
-          <main className="mx-auto max-w-7xl">{children}</main>
+          <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>

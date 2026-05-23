@@ -1,3 +1,4 @@
+import AuthHeader from "@/components/Header/AuthHeader";
 import { ReactNode } from "react";
 
 type AuthLayoutProps = Readonly<{
@@ -5,7 +6,12 @@ type AuthLayoutProps = Readonly<{
 }>;
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
-  return <>{children}</>;
+  return (
+    <>
+      <AuthHeader />
+      {children}
+    </>
+  );
 };
 
 export default AuthLayout;
