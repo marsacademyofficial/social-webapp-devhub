@@ -11,8 +11,8 @@ const AuthHeader = () => {
         <Image
           src="/dev-hub-logo.png"
           alt="dev-hub-trends"
-          width={100}
-          height={100}
+          width={256}
+          height={303}
           priority
           className="mx-auto h-15 w-auto"
         />

@@ -28,6 +28,7 @@ const LoginForm = () => {
   const loginDataSubmit = (lfdata: LoginSchemaType) => {
     setLoginError("");
 
+    // test with dummy data
     if (
       lfdata.emailId === "subho@gmail.com" &&
       lfdata.password === "12345678"
@@ -45,6 +46,7 @@ const LoginForm = () => {
       onSubmit={handleSubmit(loginDataSubmit)}
       noValidate
       className="space-y-3">
+      {/* error display section  */}
       {loginError ?
         <p className="text-destructive flex gap-2 rounded-xl border-2 p-4">
           <InfoIcon />
@@ -89,6 +91,7 @@ const LoginForm = () => {
           </Field>
         )}
       />
+
       <Controller
         name="rememberMe"
         control={control}
@@ -105,6 +108,7 @@ const LoginForm = () => {
           </Field>
         )}
       />
+
       <Button
         type="submit"
         className="w-full cursor-pointer bg-blue-500 py-5 text-white"

@@ -4,15 +4,26 @@ import { ArrowLeftIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "DevHub - Developer Community",
+  description:
+    "Connect with developers, share projects, explore tech trends and innovations.",
+};
+
 const page = () => {
   return (
     <section className="grid h-dvh place-items-center px-6 md:px-0">
       <div className="grid max-w-112.5 gap-3 py-14 lg:max-w-140">
+        {/* back to login page  */}
         <Link href={"/"}>
           <Button className="w-40">
             <ArrowLeftIcon /> Back to login
           </Button>
         </Link>
+
+        {/* company barnding logo + Text */}
         <div className="flex items-center gap-2">
           <Image
             src="/dev-hub-logo.png"
@@ -29,7 +40,11 @@ const page = () => {
           Create an account to connect with developers and communities where
           innovation meets the future.
         </p>
+
+        {/* main  register form  */}
         <RegisterForm />
+
+        {/* back to login page button  */}
         <Link href={"/"}>
           <Button
             variant={"outline"}

@@ -230,7 +230,7 @@ const RegisterForm = () => {
       </p>
       <Button
         type="submit"
-        className="w-full cursor-pointer bg-blue-500 py-5 text-white"
+        className="w-full cursor-pointer bg-blue-600 py-5 text-white"
         disabled={formState.isSubmitting}>
         {formState.isSubmitting ?
           <>
