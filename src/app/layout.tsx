@@ -1,11 +1,8 @@
 import ThemeProvider from "@/components/Providers/ThemeProvider";
+import { inter, manrope } from "@/lib/fonts";
+import { RootLayoutProps } from "@/lib/type";
 import { Metadata } from "next";
-import { ReactNode } from "react";
 import "./globals.css";
-
-type RootLayoutProps = Readonly<{
-  children: ReactNode;
-}>;
 
 export const metadata: Metadata = {
   title: "DevHub",
@@ -16,6 +13,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html
       lang="en"
+      className={`${manrope.variable} ${inter.variable}`}
       suppressHydrationWarning>
       <body>
         <ThemeProvider

@@ -6,7 +6,7 @@ const ContinueWithGoogle = () => {
   return (
     <Button
       variant="outline"
-      className="py-4">
+      className="font-paragraph py-4">
       <FcGoogle /> Continue With Google
     </Button>
   );

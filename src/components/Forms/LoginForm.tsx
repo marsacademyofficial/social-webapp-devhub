@@ -48,7 +48,7 @@ const LoginForm = () => {
       className="space-y-3">
       {/* error display section  */}
       {loginError ?
-        <p className="text-destructive flex gap-2 rounded-xl border-2 p-4">
+        <p className="text-destructive font-paragraph flex gap-2 rounded-xl border-2 p-4">
           <InfoIcon />
           The login information you entered is incorrect.
         </p>
@@ -59,14 +59,18 @@ const LoginForm = () => {
         control={control}
         render={({ field, fieldState }) => (
           <Field data-invalid={fieldState.invalid}>
-            <FieldLabel htmlFor={field.name}>Email Id </FieldLabel>
+            <FieldLabel
+              htmlFor={field.name}
+              className="font-heading">
+              Email Id{" "}
+            </FieldLabel>
             <Input
               {...field}
               id={field.name}
               type="email"
               aria-invalid={fieldState.invalid}
               placeholder="Email id"
-              className="py-5 focus-visible:border-blue-400 focus-visible:ring-1"
+              className="font-paragraph py-5 focus-visible:border-blue-400 focus-visible:ring-1"
               autoComplete="off"
             />
           </Field>
@@ -78,14 +82,18 @@ const LoginForm = () => {
         control={control}
         render={({ field, fieldState }) => (
           <Field data-invalid={fieldState.invalid}>
-            <FieldLabel htmlFor={field.name}>Password </FieldLabel>
+            <FieldLabel
+              htmlFor={field.name}
+              className="font-heading">
+              Password{" "}
+            </FieldLabel>
             <Input
               type="password"
               {...field}
               id={field.name}
               aria-invalid={fieldState.invalid}
               placeholder="Password"
-              className="py-5 focus-visible:border-blue-400 focus-visible:ring-1"
+              className="font-paragraph py-5 focus-visible:border-blue-400 focus-visible:ring-1"
               autoComplete="off"
             />
           </Field>
@@ -104,14 +112,18 @@ const LoginForm = () => {
               checked={field.value}
               onCheckedChange={field.onChange}
             />
-            <FieldLabel htmlFor={field.name}>Remember Me </FieldLabel>
+            <FieldLabel
+              htmlFor={field.name}
+              className="font-heading">
+              Remember Me{" "}
+            </FieldLabel>
           </Field>
         )}
       />
 
       <Button
         type="submit"
-        className="w-full cursor-pointer bg-blue-500 py-5 text-white"
+        className="font-paragraph w-full cursor-pointer bg-blue-500 py-5 text-white"
         disabled={!formState.isValid || formState.isSubmitting}>
         {formState.isSubmitting ?
           <>

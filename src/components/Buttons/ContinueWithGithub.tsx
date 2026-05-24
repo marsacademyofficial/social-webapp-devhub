@@ -6,7 +6,7 @@ const ContinueWithGithub = () => {
   return (
     <Button
       variant="outline"
-      className="py-4">
+      className="font-paragraph py-4">
       <VscGithubInverted />
       Continue With Github
     </Button>

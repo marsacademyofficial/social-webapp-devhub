@@ -1,11 +1,7 @@
 import Header from "@/components/Header/Header";
-import { ReactNode } from "react";
+import { RootLayoutProps } from "@/lib/type";
 
-type ProtectedLayout = Readonly<{
-  children: ReactNode;
-}>;
-
-const ProtectedLayout = ({ children }: ProtectedLayout) => {
+const ProtectedLayout = ({ children }: RootLayoutProps) => {
   return (
     <>
       <Header />

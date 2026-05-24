@@ -28,7 +28,7 @@ const page = () => {
               className="h-20 w-auto object-contain"
             />
 
-            <h2 className="text-5xl">
+            <h2 className="font-heading text-5xl font-bold">
               Connect with <br />
               <span className="text-blue-600 dark:text-blue-400">
                 Developers
@@ -52,7 +52,7 @@ const page = () => {
 
       {/* form  section  */}
       <div className="col-span-2 flex h-[90dvh] flex-col justify-center gap-4 px-6 md:px-16 lg:h-dvh">
-        <h1 className="text-2xl font-bold">Login to Devhub</h1>
+        <h1 className="font-heading text-2xl font-bold">Login to Devhub</h1>
 
         {/* main login form  */}
         <LoginForm />
@@ -69,11 +69,11 @@ const page = () => {
           <ContinueWithGithub />
 
           {/*Navigate to register page  */}
-          <p className="text-center">
+          <p className="font-heading text-center">
             Don&apos;t have an account ?{" "}
             <Link
               href={"/register"}
-              className="text-blue-600 dark:text-blue-500">
+              className="font-paragraph text-blue-600 dark:text-blue-500">
               Create Account
             </Link>
           </p>

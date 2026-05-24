@@ -48,21 +48,28 @@ const RegisterForm = () => {
           control={control}
           render={({ field, fieldState }) => (
             <Field>
-              <FieldLabel htmlFor={field.name}>First Name</FieldLabel>
+              <FieldLabel
+                htmlFor={field.name}
+                className="font-heading">
+                First Name
+              </FieldLabel>
               <Input
                 {...field}
                 id={field.name}
                 type="text"
                 aria-invalid={fieldState.invalid}
                 placeholder="First name"
-                className="py-5 focus-visible:border-blue-400 focus-visible:ring-1"
+                className="font-paragraph py-5 focus-visible:border-blue-400 focus-visible:ring-1"
                 autoComplete="given-name"
               />
               {fieldState.invalid && (
                 <div className="mt-2 flex items-center gap-2 text-sm text-red-500">
                   <AlertCircle className="h-4 w-4" />
 
-                  <FieldError errors={[fieldState.error]} />
+                  <FieldError
+                    className="font-heading"
+                    errors={[fieldState.error]}
+                  />
                 </div>
               )}
             </Field>
@@ -74,14 +81,18 @@ const RegisterForm = () => {
           control={control}
           render={({ field, fieldState }) => (
             <Field>
-              <FieldLabel htmlFor={field.name}>Surname</FieldLabel>
+              <FieldLabel
+                htmlFor={field.name}
+                className="font-heading">
+                Surname
+              </FieldLabel>
               <Input
                 {...field}
                 id={field.name}
                 type="text"
                 aria-invalid={fieldState.invalid}
                 placeholder="Surname"
-                className="py-5 focus-visible:border-blue-400 focus-visible:ring-1"
+                className="font-paragraph py-5 focus-visible:border-blue-400 focus-visible:ring-1"
                 autoComplete="family-name"
               />
 
@@ -89,7 +100,10 @@ const RegisterForm = () => {
                 <div className="mt-2 flex items-center gap-2 text-sm text-red-500">
                   <AlertCircle className="h-4 w-4" />
 
-                  <FieldError errors={[fieldState.error]} />
+                  <FieldError
+                    className="font-heading"
+                    errors={[fieldState.error]}
+                  />
                 </div>
               )}
             </Field>
@@ -101,14 +115,18 @@ const RegisterForm = () => {
         control={control}
         render={({ field, fieldState }) => (
           <Field>
-            <FieldLabel htmlFor="user_gender">Gender</FieldLabel>
+            <FieldLabel
+              htmlFor="user_gender"
+              className="font-heading">
+              Gender
+            </FieldLabel>
             <Select
               name={field.name}
               value={field.value}
               onValueChange={field.onChange}>
               <SelectTrigger
                 id="user_gender"
-                className="w-full py-5 focus-visible:border-blue-400 focus-visible:ring-1"
+                className="font-paragraph w-full py-5 focus-visible:border-blue-400 focus-visible:ring-1"
                 aria-invalid={fieldState.invalid}>
                 <SelectValue
                   placeholder="Select your gender"
@@ -129,7 +147,10 @@ const RegisterForm = () => {
               <div className="mt-2 flex items-center gap-2 text-sm text-red-500">
                 <AlertCircle className="h-4 w-4" />
 
-                <FieldError errors={[fieldState.error]} />
+                <FieldError
+                  errors={[fieldState.error]}
+                  className="font-heading"
+                />
               </div>
             )}
           </Field>
@@ -141,14 +162,18 @@ const RegisterForm = () => {
         control={control}
         render={({ field, fieldState }) => (
           <Field>
-            <FieldLabel htmlFor={field.name}>Mobile Number</FieldLabel>
+            <FieldLabel
+              htmlFor={field.name}
+              className="font-heading">
+              Mobile Number
+            </FieldLabel>
             <Input
               {...field}
               id={field.name}
               type="text"
               aria-invalid={fieldState.invalid}
               placeholder="Mobile Number"
-              className="py-5 focus-visible:border-blue-400 focus-visible:ring-1"
+              className="font-paragraph py-5 focus-visible:border-blue-400 focus-visible:ring-1"
               autoComplete="tel"
             />
 
@@ -156,7 +181,10 @@ const RegisterForm = () => {
               <div className="mt-2 flex items-center gap-2 text-sm text-red-500">
                 <AlertCircle className="h-4 w-4" />
 
-                <FieldError errors={[fieldState.error]} />
+                <FieldError
+                  className="font-heading"
+                  errors={[fieldState.error]}
+                />
               </div>
             )}
           </Field>
@@ -168,14 +196,18 @@ const RegisterForm = () => {
         control={control}
         render={({ field, fieldState }) => (
           <Field>
-            <FieldLabel htmlFor={field.name}>Email Address</FieldLabel>
+            <FieldLabel
+              htmlFor={field.name}
+              className="font-heading">
+              Email Address
+            </FieldLabel>
             <Input
               {...field}
               id={field.name}
               type="email"
               aria-invalid={fieldState.invalid}
               placeholder="Email address"
-              className="py-5 focus-visible:border-blue-400 focus-visible:ring-1"
+              className="font-paragraph py-5 focus-visible:border-blue-400 focus-visible:ring-1"
               autoComplete="email"
             />
 
@@ -183,7 +215,10 @@ const RegisterForm = () => {
               <div className="mt-2 flex items-center gap-2 text-sm text-red-500">
                 <AlertCircle className="h-4 w-4" />
 
-                <FieldError errors={[fieldState.error]} />
+                <FieldError
+                  className="font-heading"
+                  errors={[fieldState.error]}
+                />
               </div>
             )}
           </Field>
@@ -195,14 +230,18 @@ const RegisterForm = () => {
         control={control}
         render={({ field, fieldState }) => (
           <Field>
-            <FieldLabel htmlFor={field.name}>Password</FieldLabel>
+            <FieldLabel
+              htmlFor={field.name}
+              className="font-heading">
+              Password
+            </FieldLabel>
             <Input
               type="password"
               {...field}
               id={field.name}
               aria-invalid={fieldState.invalid}
               placeholder="Password"
-              className="py-5 focus-visible:border-blue-400 focus-visible:ring-1"
+              className="font-paragraph py-5 focus-visible:border-blue-400 focus-visible:ring-1"
               autoComplete="off"
             />
 
@@ -210,27 +249,30 @@ const RegisterForm = () => {
               <div className="mt-2 flex items-center gap-2 text-sm text-red-500">
                 <AlertCircle className="h-4 w-4" />
 
-                <FieldError errors={[fieldState.error]} />
+                <FieldError
+                  errors={[fieldState.error]}
+                  className="font-heading"
+                />
               </div>
             )}
           </Field>
         )}
       />
 
-      <p>
+      <p className="font-paragraph">
         By tapping Submit, you agree to create an account and to Devhub&apos;s
         <span className="text-blue-400"> Terms</span>, and{" "}
         <span className="text-blue-400">Privacy Policy</span>.
       </p>
 
-      <p>
+      <p className="font-paragraph">
         The ways we can use the information we collect when you create an
         account. we use this information to provide, personalise and improve our
         products.
       </p>
       <Button
         type="submit"
-        className="w-full cursor-pointer bg-blue-600 py-5 text-white"
+        className="font-paragraph w-full cursor-pointer bg-blue-600 py-5 text-white"
         disabled={formState.isSubmitting}>
         {formState.isSubmitting ?
           <>
