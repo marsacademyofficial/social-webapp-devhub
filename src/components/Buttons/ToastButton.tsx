@@ -3,12 +3,15 @@
 import { toast } from "react-toastify";
 import { Button } from "../shadcnui/button";
 
-const ToastButton = () => {
+type ToastButtonProps = {
+  name: string;
+};
+const ToastButton = ({ name }: ToastButtonProps) => {
   return (
     <Button
-      onClick={() => toast.success("Hello there 👋🏻")}
+      onClick={() => toast.success(`Hello ${name} 👋🏻`)}
       size={"lg"}>
-      Click Me!
+      Click Me !
     </Button>
   );
 };

@@ -1,28 +1,27 @@
-import Header from "@/components/Header/Header";
 import ThemeProvider from "@/components/Providers/ThemeProvider";
-import { geistSans } from "@/lib/fonts";
-import { cn } from "@/lib/utils";
-import { ReactNode } from "react";
+import { inter, manrope } from "@/lib/fonts";
+import { RootLayoutProps } from "@/lib/type";
+import { Metadata } from "next";
 import "./globals.css";
 
-type RootLayoutProps = Readonly<{
-  children: ReactNode;
-}>;
+export const metadata: Metadata = {
+  title: "DevHub",
+  description: "Developer community platform",
+};
 
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html
       lang="en"
-      className={cn("font-sans", geistSans.variable)}
+      className={`${manrope.variable} ${inter.variable}`}
       suppressHydrationWarning>
       <body>
         <ThemeProvider
-          attribute={"class"}
-          defaultTheme="dark"
-          enableSystem={false}>
-          <Header />
-
-          <main className="mx-auto max-w-7xl">{children}</main>
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange>
+          <main>{children}</main>
         </ThemeProvider>
       </body>
     </html>
