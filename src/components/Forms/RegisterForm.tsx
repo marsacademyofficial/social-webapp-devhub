@@ -4,9 +4,12 @@ import {
   registerSchema,
   RegisterSchemaType,
 } from "@/lib/zodschema/registerSchema";
+import userRegister from "@/server/userRegister";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AlertCircle, LoaderIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { Button } from "../shadcnui/button";
 import { Field, FieldError, FieldLabel } from "../shadcnui/field";
 import { Input } from "../shadcnui/input";
@@ -19,23 +22,47 @@ import {
 } from "../shadcnui/select";
 
 const RegisterForm = () => {
-  const { handleSubmit, control, formState } = useForm<RegisterSchemaType>({
-    resolver: zodResolver(registerSchema),
+  const { push } = useRouter();
+  const { handleSubmit, control, formState, reset } =
+    useForm<RegisterSchemaType>({
+      resolver: zodResolver(registerSchema),
 
-    defaultValues: {
-      firstName: "",
-      surName: "",
-      gender: "",
-      phoneNumber: "",
-      emailId: "",
-      password: "",
-    },
+      defaultValues: {
+        firstName: "",
+        surName: "",
+        gender: "",
+        phoneNumber: "",
+        emailId: "",
+        password: "",
+      },
 
-    mode: "onSubmit",
-  });
+      mode: "onSubmit",
+    });
 
-  const registerDataSubmit = (rData: RegisterSchemaType) => {
-    console.log(rData);
+  const registerDataSubmit = async ({
+    firstName,
+    surName,
+    emailId,
+    gender,
+    password,
+    phoneNumber,
+  }: RegisterSchemaType) => {
+    const { isSuccess, message } = await userRegister({
+      firstName,
+      surName,
+      emailId,
+      gender,
+      password,
+      phoneNumber,
+    });
+
+    if (isSuccess) {
+      toast.success(message);
+      reset();
+      push("/login");
+    } else {
+      toast.error(message);
+    }
   };
 
   return (
@@ -135,7 +162,7 @@ const RegisterForm = () => {
               </SelectTrigger>
 
               <SelectContent
-                className=""
+                className="font-paragraph cursor-pointer"
                 side="bottom">
                 <SelectItem value="female">Female</SelectItem>
                 <SelectItem value="male">Male</SelectItem>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LogoutButton from "../Buttons/LogoutButton";
 
 const Header = () => {
   return (
@@ -15,7 +16,7 @@ const Header = () => {
         </Link>
 
         <nav className="flex items-center gap-4">
-          <Link href={"/"}>Home</Link>
+          <LogoutButton />
         </nav>
       </div>
     </header>

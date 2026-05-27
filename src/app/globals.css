@@ -48,7 +48,7 @@
 
   /* Fonts */
   --font-heading: "Manrope", sans-serif;
-  --font-paragraph: "Inter" serif;
+  --font-paragraph: "Inter", sans-serif;
 }
 
 :root {
