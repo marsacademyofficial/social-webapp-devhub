@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@/lib/auth";
-import { LoginSchemaType } from "@/lib/zodschema/loginSchema";
+import { LoginSchemaType } from "@/lib/type";
 import { headers } from "next/headers";
 
 const userLogin = async ({

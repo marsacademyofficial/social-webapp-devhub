@@ -11,4 +11,5 @@ export const inter = Inter({
   subsets: ["latin"],
   variable: "--font-paragraph",
   display: "swap",
+  weight: ["400"],
 });

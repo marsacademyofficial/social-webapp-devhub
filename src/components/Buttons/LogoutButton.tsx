@@ -1,5 +1,5 @@
 "use client";
-import userLogout from "@/server/userLogout";
+import userLogout from "@/server/auth/userLogout";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { Button } from "../shadcnui/button";

@@ -1,31 +1,40 @@
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
+import getCurrentUserInfo from "./server/getCurrentUserInfo";
 
 export async function proxy(request: NextRequest) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  const pathName = request.nextUrl.pathname;
 
-  // Public routes
-  const publicRoutes = ["/login", "/register"];
-
-  // Skip middleware for public routes
-  if (publicRoutes.includes(request.nextUrl.pathname)) {
+  // Skip static files
+  if (pathName.includes(".")) {
     return NextResponse.next();
   }
 
-  // THIS IS NOT SECURE!
-  // This is the recommended approach to optimistically redirect users
-  // We recommend handling auth checks in each page/route
+  // Public routes
+  if (pathName === "/login" || pathName === "/register") {
+    return NextResponse.next();
+  }
+
+  const session = await getCurrentUserInfo();
 
   if (!session) {
     return NextResponse.redirect(new URL("/login", request.url));
+  }
+
+  if (pathName === "/claimusername") {
+    if (session.user.userName) {
+      return NextResponse.redirect(new URL("/", request.url));
+    }
+
+    return NextResponse.next();
+  }
+
+  if (!session.user.userName) {
+    return NextResponse.redirect(new URL("/claimusername", request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/", "/:userprofile"], // Specify the routes the middleware applies to
+  matcher: ["/", "/:userprofile", "/claimusername"],
 };

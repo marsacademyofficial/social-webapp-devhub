@@ -1,16 +1,18 @@
 import Header from "@/components/Header/Header";
-import { auth } from "@/lib/auth";
 import { RootLayoutProps } from "@/lib/type";
-import { headers } from "next/headers";
+import getCurrentUserInfo from "@/server/getCurrentUserInfo";
 import { redirect } from "next/navigation";
 
 const ProtectedLayout = async ({ children }: RootLayoutProps) => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  const session = await getCurrentUserInfo();
 
   if (!session) {
     redirect("/login");
+  }
+
+  // Username not setup
+  if (!session.user.userName) {
+    redirect("/claimusername");
   }
 
   return (

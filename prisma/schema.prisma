@@ -17,8 +17,9 @@ model User {
   surName       String
   name          String
   email         String
-  gender        String?
-  phoneNumber   String?
+  gender        String
+  phoneNumber   String
+  userName      String?
   emailVerified Boolean   @default(false)
   image         String?
   createdAt     DateTime  @default(now())
@@ -27,6 +28,8 @@ model User {
   accounts      Account[]
 
   @@unique([email])
+  @@unique([phoneNumber])
+  @@unique([userName])
   @@map("user")
 }
 

@@ -1,9 +1,10 @@
 "use client";
 
-import { loginSchema, LoginSchemaType } from "@/lib/zodschema/loginSchema";
-import userLogin from "@/server/userLogin";
+import { LoginSchemaType } from "@/lib/type";
+import { loginSchema } from "@/lib/zodschema/loginSchema";
+import userLogin from "@/server/auth/userLogin";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { InfoIcon, LoaderIcon } from "lucide-react";
+import { InfoIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -12,6 +13,7 @@ import { Button } from "../shadcnui/button";
 import { Checkbox } from "../shadcnui/checkbox";
 import { Field, FieldLabel } from "../shadcnui/field";
 import { Input } from "../shadcnui/input";
+import { Spinner } from "../shadcnui/spinner";
 
 const LoginForm = () => {
   const [loginError, setLoginError] = useState("");
@@ -43,7 +45,7 @@ const LoginForm = () => {
 
     if (isSuccess) {
       toast.success(message);
-      push("/");
+      push("/claimusername");
       reset();
     } else {
       setLoginError(message);
@@ -79,7 +81,7 @@ const LoginForm = () => {
               aria-invalid={fieldState.invalid}
               placeholder="Email id"
               className="font-paragraph py-5 focus-visible:border-blue-400 focus-visible:ring-1"
-              autoComplete="off"
+              autoComplete="email"
             />
           </Field>
         )}
@@ -135,7 +137,7 @@ const LoginForm = () => {
         disabled={!formState.isValid || formState.isSubmitting}>
         {formState.isSubmitting ?
           <>
-            <LoaderIcon className="animate-spin" />
+            <Spinner />
           </>
         : <>Log in</>}
       </Button>

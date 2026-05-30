@@ -1,25 +1,24 @@
 "use client";
 
-import {
-  registerSchema,
-  RegisterSchemaType,
-} from "@/lib/zodschema/registerSchema";
-import userRegister from "@/server/userRegister";
+import { RegisterSchemaType } from "@/lib/type";
+import { registerSchema } from "@/lib/zodschema/registerSchema";
+import userRegister from "@/server/auth/userRegister";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { AlertCircle, LoaderIcon } from "lucide-react";
+import { AlertCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { Button } from "../shadcnui/button";
+import {
+  Combobox,
+  ComboboxContent,
+  ComboboxInput,
+  ComboboxItem,
+  ComboboxList,
+} from "../shadcnui/combobox";
 import { Field, FieldError, FieldLabel } from "../shadcnui/field";
 import { Input } from "../shadcnui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../shadcnui/select";
+import { Spinner } from "../shadcnui/spinner";
 
 const RegisterForm = () => {
   const { push } = useRouter();
@@ -47,7 +46,7 @@ const RegisterForm = () => {
     password,
     phoneNumber,
   }: RegisterSchemaType) => {
-    const { isSuccess, message } = await userRegister({
+    const response = await userRegister({
       firstName,
       surName,
       emailId,
@@ -56,12 +55,12 @@ const RegisterForm = () => {
       phoneNumber,
     });
 
-    if (isSuccess) {
-      toast.success(message);
+    if (response?.isSuccess) {
+      toast.success(response.message);
       reset();
       push("/login");
     } else {
-      toast.error(message);
+      toast.error(response?.message);
     }
   };
 
@@ -147,28 +146,26 @@ const RegisterForm = () => {
               className="font-heading">
               Gender
             </FieldLabel>
-            <Select
+
+            <Combobox
               name={field.name}
               value={field.value}
               onValueChange={field.onChange}>
-              <SelectTrigger
+              <ComboboxInput
+                placeholder="Select your gender"
+                type="text"
                 id="user_gender"
-                className="font-paragraph w-full py-5 focus-visible:border-blue-400 focus-visible:ring-1"
-                aria-invalid={fieldState.invalid}>
-                <SelectValue
-                  placeholder="Select your gender"
-                  className="capitalize"
-                />
-              </SelectTrigger>
-
-              <SelectContent
-                className="font-paragraph cursor-pointer"
-                side="bottom">
-                <SelectItem value="female">Female</SelectItem>
-                <SelectItem value="male">Male</SelectItem>
-                <SelectItem value="other">Other</SelectItem>
-              </SelectContent>
-            </Select>
+                className="font-paragraph py-5"
+                aria-invalid={fieldState.invalid}
+              />
+              <ComboboxContent className="font-paragraph p-2">
+                <ComboboxList>
+                  <ComboboxItem value="Female">Female</ComboboxItem>
+                  <ComboboxItem value="Male">Male</ComboboxItem>
+                  <ComboboxItem value="Other">Other</ComboboxItem>
+                </ComboboxList>
+              </ComboboxContent>
+            </Combobox>
 
             {fieldState.invalid && (
               <div className="mt-2 flex items-center gap-2 text-sm text-red-500">
@@ -303,7 +300,7 @@ const RegisterForm = () => {
         disabled={formState.isSubmitting}>
         {formState.isSubmitting ?
           <>
-            <LoaderIcon className="animate-spin" />
+            <Spinner />
           </>
         : <>Register</>}
       </Button>

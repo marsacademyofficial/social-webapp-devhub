@@ -1,4 +1,4 @@
-import RegisterForm from "@/components/Forms/RegisterForm";
+import RegisterForm from "@/components/AuthForms/RegisterForm";
 import { Button } from "@/components/shadcnui/button";
 import { ArrowLeftIcon } from "lucide-react";
 import Image from "next/image";
