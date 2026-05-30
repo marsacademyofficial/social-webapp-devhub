@@ -5,5 +5,3 @@ export const loginSchema = z.object({
   password: z.string().min(8).max(72),
   rememberMe: z.boolean(),
 });
-
-export type LoginSchemaType = z.infer<typeof loginSchema>;

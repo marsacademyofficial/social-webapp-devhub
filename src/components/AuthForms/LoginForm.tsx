@@ -1,18 +1,23 @@
 "use client";
 
-import { loginSchema, LoginSchemaType } from "@/lib/zodschema/loginSchema";
+import { LoginSchemaType } from "@/lib/type";
+import { loginSchema } from "@/lib/zodschema/loginSchema";
+import userLogin from "@/server/auth/userLogin";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { InfoIcon, LoaderIcon } from "lucide-react";
+import { InfoIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { Button } from "../shadcnui/button";
 import { Checkbox } from "../shadcnui/checkbox";
 import { Field, FieldLabel } from "../shadcnui/field";
 import { Input } from "../shadcnui/input";
+import { Spinner } from "../shadcnui/spinner";
 
 const LoginForm = () => {
   const [loginError, setLoginError] = useState("");
-
+  const { push } = useRouter();
   const { control, handleSubmit, formState, reset } = useForm<LoginSchemaType>({
     resolver: zodResolver(loginSchema),
 
@@ -25,22 +30,27 @@ const LoginForm = () => {
     mode: "onSubmit",
   });
 
-  const loginDataSubmit = (lfdata: LoginSchemaType) => {
+  const loginDataSubmit = async ({
+    emailId,
+    password,
+    rememberMe,
+  }: LoginSchemaType) => {
     setLoginError("");
 
-    // test with dummy data
-    if (
-      lfdata.emailId === "subho@gmail.com" &&
-      lfdata.password === "12345678"
-    ) {
-      console.log(lfdata);
+    const { isSuccess, message } = await userLogin({
+      emailId,
+      password,
+      rememberMe,
+    });
+
+    if (isSuccess) {
+      toast.success(message);
+      push("/claimusername");
       reset();
     } else {
-      console.log("The login information you entered is incorrect. ");
-      setLoginError("The login information you entered is incorrect.");
+      setLoginError(message);
     }
   };
-
   return (
     <form
       onSubmit={handleSubmit(loginDataSubmit)}
@@ -50,7 +60,7 @@ const LoginForm = () => {
       {loginError ?
         <p className="text-destructive font-paragraph flex gap-2 rounded-xl border-2 p-4">
           <InfoIcon />
-          The login information you entered is incorrect.
+          {loginError}
         </p>
       : " "}
 
@@ -71,7 +81,7 @@ const LoginForm = () => {
               aria-invalid={fieldState.invalid}
               placeholder="Email id"
               className="font-paragraph py-5 focus-visible:border-blue-400 focus-visible:ring-1"
-              autoComplete="off"
+              autoComplete="email"
             />
           </Field>
         )}
@@ -127,7 +137,7 @@ const LoginForm = () => {
         disabled={!formState.isValid || formState.isSubmitting}>
         {formState.isSubmitting ?
           <>
-            <LoaderIcon className="animate-spin" />
+            <Spinner />
           </>
         : <>Log in</>}
       </Button>

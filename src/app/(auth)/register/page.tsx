@@ -1,4 +1,4 @@
-import RegisterForm from "@/components/Forms/RegisterForm";
+import RegisterForm from "@/components/AuthForms/RegisterForm";
 import { Button } from "@/components/shadcnui/button";
 import { ArrowLeftIcon } from "lucide-react";
 import Image from "next/image";
@@ -18,7 +18,7 @@ const page = () => {
       <div className="grid max-w-112.5 gap-3 py-14 lg:max-w-160">
         {/* back to login page  */}
         <Link
-          href={"/"}
+          href={"/login"}
           className="font-heading">
           <Button className="w-40">
             <ArrowLeftIcon /> Back to login
@@ -49,7 +49,7 @@ const page = () => {
         <RegisterForm />
 
         {/* back to login page button  */}
-        <Link href={"/"}>
+        <Link href={"/login"}>
           <Button
             variant={"outline"}
             className="font-paragraph w-full py-5">

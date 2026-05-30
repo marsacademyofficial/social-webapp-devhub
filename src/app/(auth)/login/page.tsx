@@ -1,6 +1,6 @@
+import LoginForm from "@/components/AuthForms/LoginForm";
 import ContinueWithGithub from "@/components/Buttons/ContinueWithGithub";
 import ContinueWithGoogle from "@/components/Buttons/ContinueWithGoogle";
-import LoginForm from "@/components/Forms/LoginForm";
 import { Separator } from "@/components/shadcnui/separator";
 import { Metadata } from "next";
 import Image from "next/image";
@@ -40,7 +40,7 @@ const page = () => {
 
           {/* image section  */}
           <Image
-            src="/login_page_img.png"
+            src="/login-bg.png"
             alt="dev-hub-trends"
             width={1200}
             height={1200}
